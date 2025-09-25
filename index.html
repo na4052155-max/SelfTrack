@@ -1,13 +1,493 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Personalized AI Learning Path Platform</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnPath - Personalized AI Learning Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <!-- Logo -->
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <span class="logo-text">LearnPath</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav-desktop">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#roadmaps" class="nav-link">Roadmaps</a>
+                    <a href="#dashboard" class="nav-link">Dashboard</a>
+                    <a href="#challenges" class="nav-link">Challenges</a>
+                </nav>
+
+                <!-- User Actions -->
+                <div class="user-actions">
+                    <div id="auth-buttons" class="auth-buttons">
+                        <button id="login-btn" class="btn-secondary">Login</button>
+                        <button id="signup-btn" class="btn-primary">Sign Up</button>
+                    </div>
+                    
+                    <div id="user-profile" class="user-profile hidden">
+                        <div class="user-info">
+                            <div class="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span id="user-name" class="user-name"></span>
+                            <div class="user-points">
+                                <span id="user-points">0</span> pts
+                            </div>
+                        </div>
+                        <button id="logout-btn" class="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+
+                    <!-- Mobile menu button -->
+                    <button class="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-bg">
+                <div class="blob blob-1"></div>
+                <div class="blob blob-2"></div>
+                <div class="blob blob-3"></div>
+            </div>
+            
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Master Any <span class="gradient-text">Skill</span> with AI
+                    </h1>
+                    
+                    <p class="hero-description">
+                        Get personalized learning roadmaps, track your progress, and achieve your goals with 
+                        our AI-powered platform designed for modern learners.
+                    </p>
+
+                    <!-- Search Form -->
+                    <div class="search-form">
+                        <form id="create-plan-form" class="search-wrapper">
+                            <div class="search-input-wrapper">
+                                <i class="fas fa-search search-icon"></i>
+                                <input 
+                                    type="text" 
+                                    id="search-field" 
+                                    placeholder="What do you want to learn? (e.g., Web Development, Machine Learning)"
+                                    class="search-input"
+                                >
+                            </div>
+                            
+                            <div class="search-controls">
+                                <select id="difficulty-select" class="difficulty-select">
+                                    <option value="beginner">Beginner</option>
+                                    <option value="intermediate">Intermediate</option>
+                                    <option value="advanced">Advanced</option>
+                                </select>
+                                
+                                <button type="submit" class="btn-create-plan">
+                                    <i class="fas fa-sparkles"></i>
+                                    Create Plan
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon feature-icon-pink">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3>Personalized Roadmaps</h3>
+                            <p>AI-generated learning paths tailored to your goals and experience level</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon feature-icon-blue">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h3>Progress Tracking</h3>
+                            <p>Monitor your learning journey with detailed analytics and achievements</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon feature-icon-purple">
+                                <i class="fas fa-sparkles"></i>
+                            </div>
+                            <h3>Interactive Learning</h3>
+                            <p>Engage with quizzes, flashcards, and hands-on projects</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prebuilt Plans Section -->
+        <section id="prebuilt-plans" class="prebuilt-plans">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        Popular Learning <span class="gradient-text">Roadmaps</span>
+                    </h2>
+                    <p class="section-description">
+                        Start your journey with our most popular pre-built learning paths
+                    </p>
+                </div>
+
+                <div class="plans-grid">
+                    <div class="plan-card" data-plan="Web Development">
+                        <div class="plan-icon plan-icon-blue">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Web Development</h3>
+                        <p>Master modern web development with React, Node.js, and more</p>
+                        <div class="plan-meta">
+                            <span class="plan-duration">6-12 months</span>
+                        </div>
+                        <div class="plan-skills">
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                        </div>
+                        <div class="plan-footer">
+                            <span class="plan-cta">Start Learning →</span>
+                        </div>
+                    </div>
+
+                    <div class="plan-card" data-plan="UI/UX Design">
+                        <div class="plan-icon plan-icon-pink">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>UI/UX Design</h3>
+                        <p>Learn user interface and experience design principles</p>
+                        <div class="plan-meta">
+                            <span class="plan-duration">4-8 months</span>
+                        </div>
+                        <div class="plan-skills">
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Design Theory</span>
+                            <span class="skill-tag">Prototyping</span>
+                            <span class="skill-tag">User Research</span>
+                        </div>
+                        <div class="plan-footer">
+                            <span class="plan-cta">Start Learning →</span>
+                        </div>
+                    </div>
+
+                    <div class="plan-card" data-plan="Data Science">
+                        <div class="plan-icon plan-icon-green">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>Data Science</h3>
+                        <p>Analyze data and build machine learning models</p>
+                        <div class="plan-meta">
+                            <span class="plan-duration">8-12 months</span>
+                        </div>
+                        <div class="plan-skills">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Statistics</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Machine Learning</span>
+                        </div>
+                        <div class="plan-footer">
+                            <span class="plan-cta">Start Learning →</span>
+                        </div>
+                    </div>
+
+                    <div class="plan-card" data-plan="Artificial Intelligence">
+                        <div class="plan-icon plan-icon-purple">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Artificial Intelligence</h3>
+                        <p>Dive into AI, machine learning, and neural networks</p>
+                        <div class="plan-meta">
+                            <span class="plan-duration">10-15 months</span>
+                        </div>
+                        <div class="plan-skills">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">Deep Learning</span>
+                            <span class="skill-tag">NLP</span>
+                        </div>
+                        <div class="plan-footer">
+                            <span class="plan-cta">Start Learning →</span>
+                        </div>
+                    </div>
+
+                    <div class="plan-card" data-plan="Mobile Development">
+                        <div class="plan-icon plan-icon-orange">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile Development</h3>
+                        <p>Build native and cross-platform mobile applications</p>
+                        <div class="plan-meta">
+                            <span class="plan-duration">6-10 months</span>
+                        </div>
+                        <div class="plan-skills">
+                            <span class="skill-tag">React Native</span>
+                            <span class="skill-tag">Flutter</span>
+                            <span class="skill-tag">iOS</span>
+                            <span class="skill-tag">Android</span>
+                        </div>
+                        <div class="plan-footer">
+                            <span class="plan-cta">Start Learning →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="dashboard hidden">
+            <div class="container">
+                <div class="dashboard-header">
+                    <h1 id="dashboard-welcome">Welcome back! 👋</h1>
+                    <p>Continue your learning journey and track your progress</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label">Total Points</p>
+                                <p id="total-points" class="stat-value stat-value-pink">0</p>
+                            </div>
+                            <i class="fas fa-trophy stat-icon stat-icon-pink"></i>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label">Level</p>
+                                <p id="user-level" class="stat-value stat-value-blue">1</p>
+                            </div>
+                            <i class="fas fa-star stat-icon stat-icon-blue"></i>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label">Completed Tasks</p>
+                                <p id="completed-tasks" class="stat-value stat-value-green">0</p>
+                            </div>
+                            <i class="fas fa-bullseye stat-icon stat-icon-green"></i>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label">Active Plans</p>
+                                <p id="active-plans" class="stat-value stat-value-purple">0</p>
+                            </div>
+                            <i class="fas fa-clock stat-icon stat-icon-purple"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learning Plan Progress -->
+                <div class="dashboard-content">
+                    <div class="progress-section">
+                        <div id="current-plan" class="current-plan hidden">
+                            <!-- Plan content will be dynamically generated -->
+                        </div>
+
+                        <div id="no-plan" class="no-plan">
+                            <h2>Start Your Learning Journey</h2>
+                            <p>Create your first learning plan to get started</p>
+                            <button class="btn-primary" onclick="showSection('hero')">Create Learning Plan</button>
+                        </div>
+                    </div>
+
+                    <div class="sidebar">
+                        <!-- Weekly Challenge -->
+                        <div class="challenge-card">
+                            <h3>Weekly Challenge 🎯</h3>
+                            <p>Complete 5 tasks this week to earn 50 bonus points!</p>
+                            <div class="challenge-progress">
+                                <div class="challenge-info">
+                                    <span>Progress</span>
+                                    <span id="challenge-progress">3/5</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Badges -->
+                        <div class="badges-card">
+                            <h3>Recent Badges</h3>
+                            <div id="badges-list" class="badges-list">
+                                <p class="no-badges">Complete tasks to earn your first badge!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="quiz-section hidden">
+            <div class="container">
+                <div id="quiz-container" class="quiz-container">
+                    <!-- Quiz content will be dynamically generated -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to continue your learning journey</p>
+            </div>
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="login-email" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="login-password" placeholder="Enter your password" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary btn-full">Sign In</button>
+            </form>
+            <div class="auth-switch">
+                <p>Don't have an account? <button id="switch-to-signup" class="link-btn">Sign up</button></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-header">
+                <h2>Join LearnPath</h2>
+                <p>Start your personalized learning journey</p>
+            </div>
+            <form id="signup-form" class="auth-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="signup-name" placeholder="Enter your full name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="signup-email" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="signup-password" placeholder="Create a password" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="signup-confirm" placeholder="Confirm your password" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary btn-full">Create Account</button>
+            </form>
+            <div class="auth-switch">
+                <p>Already have an account? <button id="switch-to-login" class="link-btn">Sign in</button></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <span class="logo-text">LearnPath</span>
+                    </div>
+                    <p class="footer-description">
+                        Empowering learners worldwide with AI-powered personalized education. 
+                        Master any skill with our adaptive learning platform.
+                    </p>
+                    <div class="footer-love">
+                        <span>Made with</span>
+                        <i class="fas fa-heart"></i>
+                        <span>for learners everywhere</span>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="#dashboard">Dashboard</a></li>
+                            <li><a href="#roadmaps">Roadmaps</a></li>
+                            <li><a href="#quiz">Quizzes</a></li>
+                            <li><a href="#progress">Progress</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Community</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Feedback</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 LearnPath. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>
